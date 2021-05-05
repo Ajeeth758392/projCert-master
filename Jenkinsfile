@@ -4,12 +4,12 @@ node{ def dockerImageName= 'ajeeth758392/javadedockerapp_$JOB_NAME:$BUILD_NUMBER
       }
       stage('Build'){
          // Get maven home path and build
-         def mvnHome =  tool name: 'Maven 3.3.9', type: 'maven'   
+         def mvnHome =  tool name: 'maven', type: 'maven'   
          sh "${mvnHome}/bin/mvn package -Dmaven.test.skip=true"
       }       
      
      stage ('Test'){
-         def mvnHome =  tool name: 'Maven 3.3.9', type: 'maven'    
+         def mvnHome =  tool name: 'maven', type: 'maven'    
          sh "${mvnHome}/bin/mvn verify; sleep 3"
       }
       
