@@ -1,4 +1,5 @@
-node{
+pipeline {
+      agent{ 
       def dockerImageName= 'ajeeth758392/javadedockerapp_$JOB_NAME:$BUILD_NUMBER'
       stage('SCM Checkout'){
          git 'https://github.com/Ajeeth758392/projCert-master.git'
@@ -43,3 +44,4 @@ node{
       
          
   }
+}
