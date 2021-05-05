@@ -17,7 +17,7 @@ node{ def dockerImageName= 'ajeeth758392/javadedockerapp_$JOB_NAME:$BUILD_NUMBER
            sh "docker build -t ${dockerImageName} ."
       }  
    
-      stage('Publish Docker Image')3
+     stage('Publish Docker Image'){
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u ajeeth758392 -p ${dockerPWD}"
          }
@@ -38,8 +38,5 @@ node{ def dockerImageName= 'ajeeth758392/javadedockerapp_$JOB_NAME:$BUILD_NUMBER
             }
             
       
-      }
-      
-         
+      }     
   }
-}
