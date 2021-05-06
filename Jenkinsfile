@@ -30,8 +30,8 @@ node{ def dockerImageName= 'ajeeth758392/javadedockerapp_$JOB_NAME:$BUILD_NUMBER
             def scriptRunner='sudo ./stopscript.sh'           
             def dockerRun= "sudo docker run -p 8082:8080 -d --name ${dockerContainerName} ${dockerImageName}" 
             withCredentials([string(credentialsId: 'deploymentserverpwd', variable: 'dpPWD')]) {
-                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no ajeeth_prabhu@35.197.135.227" 
-                  sh "sshpass -p ${dpPWD} scp -r stopscript.sh ajeeth_prabhu@35.197.135.227:/home/devops" 
+                  sh "sshpass -p ${dpPWD} -t ssh -o StrictHostKeyChecking=no ajeeth_prabhu@35.197.135.227" 
+                  sh "sshpass -p ${dpPWD} -t scp -r stopscript.sh ajeeth_prabhu@35.197.135.227:/home/devops" 
                   sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no ajeeth_prabhu@35.197.135.227${changingPermission}"
                   sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no ajeeth_prabhu@35.197.135.227${scriptRunner}"
                   sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no ajeeth_prabhu@35.197.135.227${dockerRun}"
